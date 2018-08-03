@@ -19,7 +19,7 @@
       (build-lw-console))
     pathname))
 
-(defmethod execute ((self lispworks) executable options)
+(defmethod execute ((self lispworks) executable option)
   (exec (namestring executable)
         (mapcar (lambda (option)
                   (destructuring-bind (op arg) option
@@ -27,4 +27,4 @@
                       (:eval arg)
                       (:load (format nil "(load ~S)" arg))
                       (:system (format nil "(ql:quickload ~S)" (string-upcase arg))))))
-                options)))
+                (option-forms option))))
