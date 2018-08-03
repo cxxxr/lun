@@ -6,4 +6,4 @@
                (:file "src/exec")
                (:file "src/implementation")
                (:file "src/lispworks")
-               (:file "src/lun")))
+               (:file "src/main")))
