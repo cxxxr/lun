@@ -3,7 +3,7 @@
 (defclass lispworks (implementation) ())
 
 (defun build-lw-console ()
-  (ensure-directories-exist (merge-pathnames ".lun/" (user-homedir-pathname)))
+  (ensure-directories-exist +lun-directory+)
   (let ((text (uiop:read-file-string (asdf:system-relative-pathname :lun "lw-console.lisp"))))
     (uiop:with-temporary-file (:stream out :pathname lw-console-file)
       (write-string text out)
@@ -12,7 +12,7 @@
                               "-build" (namestring lw-console-file))))))
 
 (defmethod find-lisp ((self lispworks))
-  (let ((pathname (merge-pathnames ".lun/lw-console" (user-homedir-pathname))))
+  (let ((pathname (merge-pathnames "lw-console" +lun-directory+)))
     (unless (uiop:file-exists-p pathname)
       (build-lw-console))
     pathname))
