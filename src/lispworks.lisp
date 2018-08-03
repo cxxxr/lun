@@ -1,5 +1,7 @@
 (in-package :lun)
 
+(defparameter +lispworks-program+ #p"/usr/local/lib64/LispWorks/lispworks-7-1-0-amd64-linux")
+
 (defclass lispworks (implementation) ())
 
 (defun build-lw-console ()
@@ -8,7 +10,7 @@
     (uiop:with-temporary-file (:stream out :pathname lw-console-file)
       (write-string text out)
       :close-stream
-      (uiop:run-program (list (namestring +lispworks-binary+)
+      (uiop:run-program (list (namestring +lispworks-program+)
                               "-build" (namestring lw-console-file))))))
 
 (defmethod find-lisp ((self lispworks))
