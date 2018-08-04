@@ -4,13 +4,16 @@
 
 (defclass lispworks (implementation) ())
 
+(defun lispworks-program ()
+  (read-config :lispworks +lispworks-program+))
+
 (defun build-lw-console ()
   (ensure-directories-exist +lun-directory+)
   (let ((text (uiop:read-file-string (asdf:system-relative-pathname :lun "lw-console.lisp"))))
     (uiop:with-temporary-file (:stream out :pathname lw-console-file)
       (write-string text out)
       :close-stream
-      (uiop:run-program (list (namestring +lispworks-program+)
+      (uiop:run-program (list (namestring (lispworks-program))
                               "-build" (namestring lw-console-file))))))
 
 (defmethod find-lisp ((self lispworks))
