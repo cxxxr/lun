@@ -18,3 +18,6 @@
               (2 (format t "~A: command not found~%" file))
               (otherwise (uiop:println (%strerror *errno*))))
             (uiop:quit *errno*))))))
+
+(defun wait ()
+  (loop (sleep most-positive-fixnum)))
