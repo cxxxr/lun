@@ -29,5 +29,6 @@
                     (ecase op
                       (:eval arg)
                       (:load (format nil "(load ~S)" arg))
-                      (:system (format nil "(ql:quickload ~S)" (string-upcase arg))))))
+                      (:system (format nil "(ql:quickload ~S)" (string-upcase arg)))
+                      (:wait (format nil "(loop (sleep most-positive-fixnum))")))))
                 (option-forms option))))

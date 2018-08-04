@@ -12,7 +12,9 @@
               ((member arg '("-l" "--load") :test #'string=)
                (push-end (list :load (pop arguments)) (option-forms option)))
               ((member arg '("-s" "--system") :test #'string=)
-               (push-end (list :system (pop arguments)) (option-forms option))))
+               (push-end (list :system (pop arguments)) (option-forms option)))
+              ((string= arg "wait")
+               (push-end (list :wait nil) (option-forms option))))
     :while arguments)
   arguments)
 
