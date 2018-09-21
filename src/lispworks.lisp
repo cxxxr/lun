@@ -1,6 +1,6 @@
 (in-package :lun)
 
-(defparameter +lispworks-program+ #p"/usr/local/lib64/LispWorks/lispworks-7-1-0-amd64-linux")
+(defparameter +lispworks-program+ #p"lispworks-7-1-0-amd64-linux")
 
 (defclass lispworks (implementation) ())
 
